@@ -12,13 +12,14 @@ import org.apache.spark.{SparkConf, SparkContext}
 object TwitterExample1 extends UserConstants{
 
   def main(args:Array[String]){
+
     val ssc = getStreamingContext("TwitterExample1",5)
     setTwitterProperties()
+
     val stream = TwitterUtils.createStream(ssc, None)
     stream.print(5)
+
     ssc.start()
     ssc.awaitTermination()
   }
-
-
 }

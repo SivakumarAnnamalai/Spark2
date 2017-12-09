@@ -5,6 +5,6 @@ import com.siva.common.UserConstants
 /**
   * Created by Sivakumar on 12/8/2017.
   */
-object MathematicalTransformationsOnPairRDD extends UserConstants{  def main(args:Array[String]){}
+object MathematicalTransformationsOnPairRDD extends App with UserConstants{
 
 }

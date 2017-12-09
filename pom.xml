@@ -27,6 +27,13 @@
             <version>2.2.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming-kafka_2.11</artifactId>
+            <version>1.6.3</version>
+            <scope>compile</scope>
+        </dependency>
+
         <!--<dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-streaming-twitter_2.11</artifactId>

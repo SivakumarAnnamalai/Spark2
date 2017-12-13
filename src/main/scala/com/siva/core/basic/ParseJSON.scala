@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature
 object ParseJSON extends App with UserConstants {
 
     val sc = getSparkContext("Parse JSON Example")
+
     case class Person(id: Int, first_name: String,last_name:String,email:String,gender:String,ip_address:String)
 
     val input = sc.textFile(DATASET_PATH+"customer_data.json")

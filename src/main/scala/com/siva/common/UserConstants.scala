@@ -1,5 +1,6 @@
 package com.siva.common
 
+import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.streaming.dstream.DStream
 import org.apache.spark.streaming.{Seconds, StreamingContext}
@@ -10,9 +11,11 @@ import org.apache.spark.{SparkConf, SparkContext}
   */
 trait UserConstants {
   val BASE_PATH = "C:\\Users\\sivakumaran\\Downloads\\Spark2\\"
+  val OUTPUT_PATH = BASE_PATH+"output\\";
   val RESOURCES_PATH = BASE_PATH + "src\\main\\resources\\"
   val DATASET_PATH = RESOURCES_PATH + "datasets\\"
   val LOCAL = "local"
+  val HDFS_URI = "hdfs://localhost:8020/"
 
   // Kafka details
   val LOCALHOST = "localhost"
@@ -65,7 +68,13 @@ trait UserConstants {
     Some(currentCount + previousCount)
   }
 
-
+  def printOutput[T](rdd:RDD[T],desc:String="",delimiter:String="\t")={
+    println("**********"+desc+" Output **********")
+    for (element <- rdd.collect())
+      print(element+delimiter)
+    println()
+    println()
+  }
 
 
 }

@@ -18,13 +18,16 @@ object CreateRDD extends UserConstants{
     var l2 = List(1 to 500)
     val rdd2 = sc.parallelize(l2)
 
+    // Converting the String Collection to RDD
+    var l3 = Array("abc xyz abc","xyz mnp abc")
+    val rdd3 = sc.makeRDD(l3)
+
     // method3 - reading the local file into RDD using textFile method
-    var rdd3 = sc.textFile(DATASET_PATH+"test.txt")
+    var rdd4 = sc.textFile(DATASET_PATH+"test.txt")
 
     // method3 - reading the HDFS file into RDD using textFile method
-    var rdd4 = sc.textFile(DATASET_PATH+"test.txt")
+    var rdd5 = sc.textFile(HDFS_URI+DATASET_PATH+"test.txt")
 
 
   }
-
 }

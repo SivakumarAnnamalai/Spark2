@@ -13,7 +13,7 @@ object FilterTwitterData extends UserConstants{
     val ssc = getStreamingContext("Filter Twitter Data")
     setTwitterProperties()
 
-    val filters = Array("spark","hadoop","jpa","bigdata")
+    val filters = Array("spark","hadoop","hive","bigdata")
     val stream = TwitterUtils.createStream(ssc, None,filters)
     stream.print(5)
 

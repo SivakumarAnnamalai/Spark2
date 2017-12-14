@@ -14,4 +14,7 @@ object CreateCollection extends App{
   var v5 = Set(1,3,5,2,3,5,7,8,1,3)
   var v6 = Set("abc","xyz","abc","abc")
 
+  var v7 = Map("Hadoop"->"2.7.1","Hive"->"2.1.0")
+  var v8 = Map(1->"Hortonworks",2->"Cloudera",3->"MapR")
+
 }

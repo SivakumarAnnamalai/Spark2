@@ -17,5 +17,13 @@ object AccessCollection extends App{
 
   var v5 = Set(1,3,5,2,3,5,7,8,1,3)
   var v6 = Set("abc","xyz","abc","abc")
+  println(v5.contains(3))
+  println(v6.mkString(sep="\t"))
+
+  var v7 = Map("Hadoop"->"2.7.1","Hive"->"2.1.0")
+  var v8 = Map(1->"Hortonworks",2->"Cloudera",3->"MapR")
+  println(v7.get("Hive"))
+  println(v8.get(3))
+  println(v8.get(4))
 
 }

@@ -13,7 +13,7 @@ object SortOnStreamsData extends UserConstants{
     val ssc = getStreamingContext("Sort Country by count")
     setTwitterProperties()
 
-    val filters = Array("spark","hadoop","jpa","bigdata")
+    val filters = Array("spark","hadoop","hive","bigdata")
     val stream = TwitterUtils.createStream(ssc, None,filters)
     val countryDetails = stream.map(x=>(x.getLang,1)).reduceByKey(_+_).map(x=>(x._2,x._1)).transform(x=>x.sortByKey(false))
     countryDetails.print(5)

@@ -13,7 +13,7 @@ object GetCountryDetails extends UserConstants{
     val ssc = getStreamingContext("Get Country Details")
     setTwitterProperties()
 
-    val filters = Array("spark","hadoop","jpa","bigdata")
+    val filters = Array("spark","hadoop","hive","bigdata")
     val stream = TwitterUtils.createStream(ssc, None,filters)
     val countryDetails = stream.map(x=>(x.getLang,1)).reduceByKey(_+_)
     countryDetails.print(5)

@@ -1,0 +1,79 @@
+## https://www.slideshare.net/hadooparchbook/top-5-mistakes-when-writing-spark-applications-66374492
+1) Choosing number of executors, executors per cores and memory for each executor is so important.
+    E.g: If we have 6 nodes with 16 Cores each and 64GB RAM
+    a) Most Granular: 96 executors (1Core/4GB RAM each)
+       Cons: Not using benefits of running multiple tasks in same executor
+    b) Least Granular: 6 executors (16Cores/64GB RAM each)
+       Cons: Need to leave some memory overhead for OS and Daemons(Spark/Hadoop)
+    c) Least Granular With Overhead: 6 executors (15Cores/63GB RAM each)
+       Cons: Executors memory controls the heap size. Need some overhead(spark.yarn.executor.memory.overhead) for offheap memory.Default is max(384MB, 0.07*spark.executor.memory)
+             YARN AM needs a Core on client machine when you run on Client mode
+             YARN AM needs a Core on NM when you run on Cluster mode
+             15 Cores per executor can lead to bad HDFS I/O throughput. Best is to keep under 5 Cores per executor
+    d) Right answer is:
+       5 Cores per executor - This provides max HDFS throughput
+       Number of Cores on the cluster is 90 Cores after Overhead. So, the number of executors would be 18(3 on each node). 1 should be left to AM and remaining is 17 executors.
+       Each node has 63GB RAM after overhead. So, 63/3 = 21GB RAM
+       spark.yarn.executor.memory.overhead on each executor would be 21*0.07 = 1.47GB ~ 2GB.
+       Reamaining, 19GB RAM for each executor.
+
+2) Dynamic Allocation
+    Pros: Allows spark to dynamically scale the cluster resources allocated to your application based on the workload
+          Works with Spark on YARN mode
+
+3) Number of partitions on Spark RDD
+    Dont have too few partitions which will degrade the performance
+    Dont have too big partitions which will fail during shuffle
+        Spark Shuffle block can not be greater than 2GB data
+        Overflow exception happens when the data size exceeds 2GB
+        Spark uses ByteBuffer as abstraction for blocks which is limited by Integer.MAX_SIZE(2GB)
+        This is mostly problematics when we use SparkSQL as the default number of partitions to use is 200 when doing shuffle.
+        a) Number of partitions has to be increased to avoid this issue
+            Use spark.sql.shuffle.partitions property on SQL
+            Use coalesce(n) or repartition(n) on other spark applications
+        b) Avoid the Skew on the data if the data is not distributed evenly
+    Whats the recommended partitions size: Rule of thumb is around 128MB per Partition
+    Spark uses different datastructure when the number of partitions less than 2000 and more than that.
+    Bump the partitions to more than 2000 if its close to 2000.
+
+4) Skew issues - How to solve?
+    Salting
+        Normal Key : "ABC",
+        Salted Key : "ABC" + Random.nextInt(saltFactor)
+        Two Stage Aggregation
+            - Stage one to do operations on the salted keys
+            - Stage two to do operations on unsalted keys
+    Isolated Salting
+        Second stage only required for isolated keys
+    Isolated Map Joins
+        Filter out Isolated keys and use map join/aggregate on those
+        Normal reduce on the rest of the data
+        This can remove a large amount of data being shuffled
+
+5) Shuffles are to be avoided
+    MapSide Reduction where possible
+    Think about partitioning or bucketing ahead of time
+    Do as much as possible with a single shuffle
+    only send what you have to send
+    Avoid skew and Cartesians
+
+6) ReduceByKey over GroupByKey
+    ReduceByKey can do almost anything that groupByKey can do like
+        Aggregations,
+        Windowing
+        Use Memory
+        ReduceByKey has a fixed limit of memory requirements
+        GroupByKey is unbound and dependent on Data
+        Avoid reduceByKey When the input and output value types are different
+
+7) TreeReduce over Reduce
+    TreeReduce and Reduce return some result to the driver program
+    TreeReduce does more work on the executors while Reduce brings everything back to the driver
+
+8) Use Complex or Nested Types
+9) Shading concept on maven
+10) Executor Memory = spark.yarn.executor.memoryOverhead + spark.executor.memory(which includes spark.shuffle.memoryFraction + spark.storage.memoryFraction)
+11) Too many open files
+12) SecondarySorting - Use the transformation repartitionAndSortWithinPartitions
+
+

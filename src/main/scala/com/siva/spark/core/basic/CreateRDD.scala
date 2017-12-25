@@ -1,0 +1,33 @@
+package com.siva.spark.core.basic
+
+import com.siva.spark.common.UserConstants
+import com.siva.spark.core.basic.Caching.{LOCAL, getSparkContext}
+
+/**
+  * Created by Sivakumar on 12/8/2017.
+  */
+object CreateRDD extends UserConstants{
+  def main(args:Array[String]){
+    val sc = getSparkContext("Create RDD Example",LOCAL)
+
+    // method1 - convert normal collection into RDD using makeRDD method
+    var l1 = List(1 to 100)
+    val rdd1 = sc.makeRDD(l1)
+
+    // method2 - convert normal collection into RDD using parallelize method
+    var l2 = List(1 to 500)
+    val rdd2 = sc.parallelize(l2)
+
+    // Converting the String Collection to RDD
+    var l3 = Array("abc xyz abc","xyz mnp abc")
+    val rdd3 = sc.makeRDD(l3)
+
+    // method3 - reading the local file into RDD using textFile method
+    var rdd4 = sc.textFile(DATASET_PATH+"test.txt")
+
+    // method3 - reading the HDFS file into RDD using textFile method
+    var rdd5 = sc.textFile(HDFS_URI+DATASET_PATH+"test.txt")
+
+
+  }
+}

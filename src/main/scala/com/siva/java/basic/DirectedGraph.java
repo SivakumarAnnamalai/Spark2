@@ -1,7 +1,7 @@
 package com.siva.java.basic;
 
 /**
- * Created by sivakumaran on 12/25/2017.
+ * Created by Sivakumar on 12/25/2017.
  */
 /*****************************************************************************
  * File: DirectedGraph.java

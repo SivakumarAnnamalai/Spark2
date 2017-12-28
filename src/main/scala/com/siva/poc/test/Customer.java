@@ -1,7 +1,7 @@
 package com.siva.poc.test;
 
 /**
- * Created by sivakumaran on 12/24/2017.
+ * Created by Sivakumar on 12/24/2017.
  */
 public class Customer {
     int id;

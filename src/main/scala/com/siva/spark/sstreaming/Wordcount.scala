@@ -5,7 +5,7 @@ import org.apache.spark.sql.functions._
 import org.apache.spark.sql.SparkSession
 
 /**
-  * Created by sivakumaran on 12/25/2017.
+  * Created by Sivakumar on 12/25/2017.
   */
 object Wordcount extends App with UserConstants{
 

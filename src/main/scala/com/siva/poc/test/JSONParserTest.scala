@@ -7,7 +7,7 @@ import com.siva.spark.common.UserConstants
 import org.codehaus.jackson.map.ObjectMapper
 
 /**
-  * Created by sivakumaran on 12/24/2017.
+  * Created by Sivakumar on 12/24/2017.
   */
 object JSONParserTest extends App with UserConstants {
 

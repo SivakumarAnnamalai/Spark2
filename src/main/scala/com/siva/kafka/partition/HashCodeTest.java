@@ -1,7 +1,7 @@
 package com.siva.kafka.partition;
 
 /**
- * Created by sivakumaran on 12/13/2017.
+ * Created by Sivakumar on 12/13/2017.
  */
 public class HashCodeTest {
     public static void main(String args[]){

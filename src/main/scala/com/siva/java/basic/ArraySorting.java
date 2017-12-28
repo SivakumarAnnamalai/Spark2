@@ -6,7 +6,7 @@ import java.util.Collections;
 import static java.lang.System.out;
 
 /**
- * Created by sivakumaran on 12/22/2017.
+ * Created by Sivakumar on 12/22/2017.
  */
 public class ArraySorting {
     public static void main(String args[]){

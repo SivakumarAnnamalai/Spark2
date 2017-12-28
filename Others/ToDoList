@@ -1,0 +1,6 @@
+Explore Structured Streaming
+External offset management
+Storing the data on HBase/Kafka/Cassandra/Solr/Elasticsearch
+Configuration based Spark Framework to process the data
+Spark Dynamic allocation
+Spark UDF - https://docs.databricks.com/spark/latest/spark-sql/udf-scala.html

@@ -9,7 +9,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 /**
   * Created by Sivakumar on 12/8/2017.
   */
-trait UserConstants {
+trait UserConstants{
   val BASE_PATH = "C:\\Users\\sivakumaran\\Downloads\\Spark2\\"
   val OUTPUT_PATH = BASE_PATH+"output\\";
   val RESOURCES_PATH = BASE_PATH + "src\\main\\resources\\"
@@ -17,6 +17,7 @@ trait UserConstants {
   val POC_PATH = RESOURCES_PATH + "poc\\"
   val LOCAL = "local"
   val HDFS_URI = "hdfs://localhost:8020/"
+  val TAB = "\t";
 
   // Kafka details
   val LOCALHOST = "localhost"
@@ -69,13 +70,11 @@ trait UserConstants {
     Some(currentCount + previousCount)
   }
 
-  def printOutput[T](rdd:RDD[T],desc:String="",delimiter:String="\t")={
+  def printOutput[T](rdd:RDD[T],desc:String="",delimiter:String=TAB)={
     println("**********"+desc+" Output **********")
     for (element <- rdd.collect())
       print(element+delimiter)
     println()
     println()
   }
-
-
 }

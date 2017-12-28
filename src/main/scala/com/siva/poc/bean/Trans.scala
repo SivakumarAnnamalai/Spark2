@@ -6,6 +6,9 @@ import scala.beans.BeanProperty
   * Created by Sivakumar on 12/24/2017.
   */
 class Trans {
-  @BeanProperty var table:String = null;
-  @BeanProperty var query:String = null;
+  @BeanProperty
+  var table:String = null;
+
+  @BeanProperty
+  var query:String = null;
 }

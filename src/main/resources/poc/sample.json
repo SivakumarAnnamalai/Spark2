@@ -1,0 +1,19 @@
+{
+  "source":{
+    "path":"C:\\Users\\sivakumaran\\Downloads\\Spark2\\src\\main\\resources\\datasets\\test.txt"
+  },
+  "trans":[
+    {
+      "transType":"sql",
+      "query":"select email,first_name from customer",
+      "table":"customer"
+    }
+  ],
+  "sinks":[
+    {
+      "sinkType":"hdfs",
+      "path":"C:\\Users\\sivakumaran\\Downloads\\Spark2\\src\\main\\resources\\output\\out1",
+      "delimiter":"\\t"
+    }
+  ]
+}

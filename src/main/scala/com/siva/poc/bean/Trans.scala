@@ -11,4 +11,8 @@ class Trans {
 
   @BeanProperty
   var query:String = null;
+
+  @BeanProperty
+  var transType:String = null
+
 }

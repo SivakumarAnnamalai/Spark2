@@ -9,12 +9,11 @@ import org.apache.spark.sql.SparkSession
   */
 object Wordcount extends App with UserConstants{
 
-
-
   val spark = SparkSession
     .builder
     .appName("StructuredNetworkWordCount")
     .getOrCreate()
 
   import spark.implicits._
+    
 }

@@ -1,6 +1,6 @@
 package com.siva.spark.udf
 
-import com.siva.spark.basic.ReadJSONFiles.{DATASET_PATH, spark}
+import com.siva.spark.sql.basic.ReadJSONFiles.{DATASET_PATH, spark}
 import com.siva.spark.common.UserConstants
 
 /**
